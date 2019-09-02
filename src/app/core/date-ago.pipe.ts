@@ -8,30 +8,33 @@ import { count } from 'rxjs/operators';
 export class DateAgoPipe implements PipeTransform {
   transform(value: any, args?: any): any {
     if (value) {
-      let seconds = Math.floor((+new Date(value) - +new Date()) / 1000);
+      let seconds = Math.floor(value / 1000);
       if (seconds < 29)
         // less than 30 seconds ago will show as 'Just now'
         return 'Just now';
       const intervals = {
-        year: 31536000,
-        month: 2592000,
-        week: 604800,
-        day: 86400,
-        hour: 3600,
+        année: 31536000,
+        mois: 2592000,
+        semaine: 604800,
+        jour: 86400,
+        heure: 3600,
         minute: 60,
-        second: 1
+        seconde: 1
       };
       let counter;
-      let countdown: string;
+      let countdown: string = '';
       for (const i in intervals) {
         counter = Math.floor(seconds / intervals[i]);
         seconds = seconds - counter * intervals[i];
-        if (counter > 0)
-          if (counter === 1) {
-            countdown += counter + ' ' + i;
+        // console.log(i);
+        // console.log(counter);
+        if (counter > 0) {
+          if (counter === 1 || i === 'mois') {
+            countdown += counter + ' ' + i + ' ';
           } else {
-            countdown += counter + ' ' + i + 's';
+            countdown += counter + ' ' + i + 's ';
           }
+        }
       }
       return countdown;
     }
