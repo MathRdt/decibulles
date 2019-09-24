@@ -1,13 +1,37 @@
 <div class="container">
   <mat-card class="fill-screen">
-    <mat-card-content>
-      <mat-card-title translate>How long before the dechirade ?</mat-card-title>
-      <mat-card-subtitle>
+    <mat-card-content fxLayout="column" fxFlex>
+      <mat-card-title fxFlex="10" translate>How long before the dechirade ?</mat-card-title>
+      <mat-card-subtitle fxFlex="10">
         <p>{{ apocalypseNow | dateAgo }}</p>
       </mat-card-subtitle>
-      <p>
-        <img class="logo" src="assets/8.6.jpg" alt="promotion logo" />
-      </p>
+      <div
+        *ngIf="isConnected === false; else spotifyBlock"
+        fxFlex="80"
+        fxLayout="column"
+        fxLayoutAlign="space-between center"
+      >
+        <img fxFlex="40" src="assets/polizei.gif" alt="un_deux_police" />
+        <div fxFlex="20" fxLayoutAlign="center center">
+          <button mat-raised-button color="primary" (click)="startOverdoseSoundSystem()">
+            enter the dechirade sound system
+          </button>
+        </div>
+        <img fxFlex="40" src="assets/8.6.jpg" alt="promotion logo" />
+      </div>
+      <ng-template #spotifyBlock>
+        <div fxFlex="20"></div>
+        <div fxFlex="40" fxLayoutAlign="center center">
+          <iframe
+            src="https://open.spotify.com/embed/playlist/40D4a6IL9rXfOEARENUKVS"
+            width="300"
+            height="380"
+            frameborder="0"
+            allowtransparency="true"
+            allow="encrypted-media"
+          ></iframe>
+        </div>
+      </ng-template>
     </mat-card-content>
   </mat-card>
 </div>
