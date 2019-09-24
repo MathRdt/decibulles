@@ -15,8 +15,7 @@ export class SpotifyService {
   login() {
     const client_id = 'f09b59e0637a4f70b856a4c122e29b19';
     const scopes = 'user-read-private user-read-email';
-    // const redirect_uri = 'https://www.estcequecestbientotledecibulles.com/callback';
-    const redirect_uri = 'http://localhost:4200';
+    const redirect_uri = 'https://www.estcequecestbientotledecibulles.com/';
     const spotifyUrl = 'https://accounts.spotify.com/authorize';
     const urlWithParams =
       spotifyUrl +
